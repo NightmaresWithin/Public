@@ -1,0 +1,10 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="1">
+            <File firstVisibleLine="16" xOffset="0" scrollWidth="994" startPos="1407" endPos="1407" selMode="0" lang="Lua" encoding="-1" filename="C:\Programming\www.digitalnightmares.com\MoHCorona\HUDson\main.lua" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="994" startPos="0" endPos="0" selMode="0" lang="Lua" encoding="-1" filename="C:\Programming\www.digitalnightmares.com\MoHCorona\HUDson\HUDson\HUDson_Lib.lua" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="994" startPos="248" endPos="143" selMode="0" lang="Lua" encoding="-1" filename="C:\Programming\www.digitalnightmares.com\MoHCorona\WebGen\WebGen\NWWeb_Lib_Default_Set.lua" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>
