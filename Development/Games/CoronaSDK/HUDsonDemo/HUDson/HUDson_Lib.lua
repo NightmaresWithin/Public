@@ -204,9 +204,8 @@ function HUDsonLib:NewLivesIndicator(inGFXGroup, inProps)
 	end
 	
 	function livesIndicator:RemoveLife()
-		local lifeFade = self.lives
 		self.lives = self.lives - 1
-		transition.to(livesIndicator.lifeIcons[lifeFade], {time=1000, alpha=0})
+		transition.to(livesIndicator.lifeIcons[self.lives], {time=1000, alpha=0})
 		return self.lives
 	end
 	
