@@ -210,6 +210,7 @@ function HUDsonLib:NewLivesIndicator(inGFXGroup, inProps)
 	end
 	
 	function livesIndicator:Destroy()
+		print("--livesIndicator:Destroy()")
 		for i=#self.lifeIcons,1,-1 do
 			display.remove(self.lifeIcons[i])
 			self.lifeIcons[i] = nil
@@ -271,8 +272,11 @@ function HUDsonLib:NewLevelIndicator(inGFXGroup, inProps)
 	end
 	
 	function levelIndicator:Destroy()
+		print("--levelIndicator:Destroy()")
 		display.remove(self.levelText)
 		self.levelText = nil
+		display.remove(self.levelTitle)
+		self.levelTitle = nil
 		self = nil		
 	end
 	
@@ -286,7 +290,7 @@ function HUDsonLib:NewScoreBoard(inGFXGroup, inProps)
 	-- and the lovely and talented Peach Pellen.
 	local scoreBoard = {}
 	
-	scoreBoard.gfxGroup = inGFXGroup	
+	--scoreBoard.gfxGroup = inGFXGroup	
 	scoreBoard.scoreGroup = display.newGroup()
 	scoreBoard.numbersGroup = display.newGroup()
 	scoreBoard.backgroundBorder = inProps.backgroundBorder or 10
@@ -441,6 +445,16 @@ function HUDsonLib:NewScoreBoard(inGFXGroup, inProps)
 	function scoreBoard:SetScore(inScore)
 		self.score = inScore		
 		self:Update()
+	end
+	
+	function scoreBoard:Destroy()
+		print("--scoreBoard:Destroy()")
+		for i=self.scoreGroup.numChildren,1,-1 do
+			display.remove(self.scoreGroup[i])
+			self.scoreGroup[i] = nil
+		end
+		self.scoreGroup = nil
+		self = nil
 	end
 	
 	scoreBoard:Update()
