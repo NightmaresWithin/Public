@@ -67,7 +67,9 @@ function bubbleMakerLib:StopBlower()
 	
 	for i=self.bubbleGroup.numChildren,1,-1 do
 		if(self.bubbleGroup[i].Pop)then
-			self.bubbleGroup[i]:Pop()
+			if(self.bubbleGroup[i].alive)then
+				self.bubbleGroup[i]:Pop()
+			end
 		end
 	end
 end
@@ -100,7 +102,7 @@ function bubbleMakerLib:MakeBubbleTouchHandler(inSelf)
 		if (event.phase == "began") then
 			if(obj.alive)then
 				obj.alive = false
-				timer.performWithDelay(1, function()
+				timer.performWithDelay(10, function()
 					obj:Pop()
 				end)
 				self.advancePopCounter()
@@ -115,11 +117,9 @@ function bubbleMakerLib:NewBubble()
 	
 	bubbleSize = Random(50, 90)
 	
-	--bubble = display.newCircle(self.bubbleGroup, self.blowerX, self.blowerY, bubbleSize)
 	bubble = display.newImageRect(self.bubbleGroup, "Bubble.png", bubbleSize, bubbleSize)
 	bubble.x = self.blowerX
 	bubble.y = self.blowerY	
-	--bubble:setFillColor(150,150,150)
 	physics.addBody(bubble, "dynamic", {density=0.2, friction=0.0, bounce=0.5, radius=bubbleSize})
 	bubble.alive = true
 	bubble.gfxGroup = self.bubbleGroup
@@ -130,10 +130,10 @@ function bubbleMakerLib:NewBubble()
 	bubble:addEventListener("touch", bubble)
 	
 	function bubble:Pop()
-		if(bubble.collision)then
+		if(self.collision)then
 			self:removeEventListener("collision", self)
 		end
-		if(bubble.touch)then
+		if(self.touch)then
 			self:removeEventListener("touch",self)
 		end
 		

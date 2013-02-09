@@ -37,6 +37,8 @@ local function BubblePopper()
 	local blowerSpeed = 80
 	local blowerPauseTime = 6000
 	local blowerBubbleCount = 15
+	local gameOverText = nil
+	local StartGame = nil
 	
 	-- Make a background gradient
 	local function MakeBackground()
@@ -54,17 +56,27 @@ local function BubblePopper()
 		bubbleCounter.text = popCounter
 	end
 	
+	local function RestartHandler(event)
+		if(event.phase == "began")then
+			gameOverText:removeEventListener("touch", gameOverText)
+			display.remove(gameOverText)
+			gameOverText = nil
+			popCounter = 0
+			bubbleCounter.text = popCounter
+			StartGame()
+		end	
+		return true
+	end
+	
 	local function GameOver()
 		bubbleMaker:StopBlower()
-			
-		timer.performWithDelay(10, function()
-			physics.stop()
-		end)
 		
-		local gameOverText = display.newText(hudGroup, "Game Over", 0, 0, native.systemFontBold, 40)
+		gameOverText = display.newText(hudGroup, "Game Over", 0, 0, native.systemFontBold, 40)
 		gameOverText:setReferencePoint(display.CenterReferencePoint)
 		gameOverText.x = screenHW
 		gameOverText.y = screenHH
+		gameOverText:addEventListener("touch", RestartHandler)
+		
 	end
 	
 	--Simple, re-usable function to create physics boundaries on your device
@@ -99,9 +111,13 @@ local function BubblePopper()
 	end
 	MakeGrass()
 	
-	bubbleMaker = bubbleMaker_Lib.New(bubbleGroup, AdvancePopCounter, GameOver)
-	bubbleMaker:MakeBlower(screenHW, 100, blowerBubbleCount, blowerSpeed, blowerPauseTime)
-	bubbleMaker:StartBlower()
+	StartGame = function()
+		bubbleMaker = bubbleMaker_Lib.New(bubbleGroup, AdvancePopCounter, GameOver)
+		bubbleMaker:MakeBlower(screenHW, 100, blowerBubbleCount, blowerSpeed, blowerPauseTime)
+		bubbleMaker:StartBlower()
+	end
+	StartGame()
+	
 end
 
 BubblePopper()
