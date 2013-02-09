@@ -2,7 +2,8 @@ Bubble Popper for the CoronaSDK
 
 This template was constructed to demonstrate many aspects of programming in lua for Corona.
 
-You will learn:
+You will learn
+
 1. How to implement object orientated design patterns in lua
 2. "Class" instantiation
 3. How to create event handlers for collision and touch
