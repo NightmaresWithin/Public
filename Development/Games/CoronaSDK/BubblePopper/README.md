@@ -13,6 +13,6 @@ You will learn
 7. How to return events to a calling module
 8. transition effects
 
-And a how lot more!
+And a lot more!
 
 Download.  Learn.  Make it your own.
