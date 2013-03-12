@@ -120,7 +120,7 @@ function bubbleMakerLib:NewBubble()
 	bubble = display.newImageRect(self.bubbleGroup, "Bubble.png", bubbleSize, bubbleSize)
 	bubble.x = self.blowerX
 	bubble.y = self.blowerY	
-	physics.addBody(bubble, "dynamic", {density=0.2, friction=0.0, bounce=0.5, radius=bubbleSize})
+	physics.addBody(bubble, "dynamic", {density=0.2, friction=0.0, bounce=0.5, radius=bubbleSize * .45})
 	bubble.alive = true
 	bubble.gfxGroup = self.bubbleGroup
 	bubble.collision = self:MakeBubbleCollisionHandler(self)

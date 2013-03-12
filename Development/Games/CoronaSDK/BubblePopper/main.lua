@@ -11,6 +11,7 @@ physics = require("physics")
 local function BubblePopper()
 	physics.start()
 	physics.setGravity(0, 1)
+	--physics.setDrawMode("hybrid")
 	
 	local screenW = display.contentWidth
 	local screenH = display.contentHeight
@@ -42,9 +43,10 @@ local function BubblePopper()
 	
 	-- Make a background gradient
 	local function MakeBackground()
-		local grad = graphics.newGradient({ 10, 180, 180 },{ 10, 140, 150 }, "down" )
-		local background = display.newRect(hudGroup, 0, 0, screenW, screenH)
-		background:setFillColor(grad)
+		local background = display.newImageRect(backgroundGroup, "Sky.png", screenW, screenH)
+		background:setReferencePoint(display.TopLeftReferencePoint)
+		background.x = 0
+		background.y = 0
 	end
 	MakeBackground()
 	
