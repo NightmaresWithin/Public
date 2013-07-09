@@ -100,70 +100,65 @@ function DrawCanvas() {
 		DrawRects();
 		
 		/*
-		var gradCircle = new fabric.Circle({
-			left: 10, //canvasHW,
-			top: 10, //canvasHH,
-			fill: '#00ffff',
-			radius: 10
-		});
+		var gradCircle = new fabric.Circle({
+			left: 10, //canvasHW,
+			top: 10, //canvasHH,
+			fill: '#00ffff',
+			radius: 10
+		});
 		nwCanvas.add(gradCircle);
-		
-		function MoveCircle() {
-			function MoveRight() {
-				gradCircle.animate('left', '+=' + (nwCanvas.width - 20), {
-					//onChange: nwCanvas.renderAll.bind(nwCanvas),
-					//from: 0,
-					duration: 4000,
-					easing: fabric.util.ease.easeLinear,
-					onComplete: MoveDown
-				});
+		function MoveCircle() {
+			function MoveRight() {
+				gradCircle.animate('left', '+=' + (nwCanvas.width - 20), {
+					//onChange: nwCanvas.renderAll.bind(nwCanvas),
+					//from: 0,
+					duration: 4000,
+					easing: fabric.util.ease.easeLinear,
+					onComplete: MoveDown
+				});
 			}
-			
-			function MoveDown() {
-				gradCircle.animate('top', '+=' + (nwCanvas.height - 20), {
-					//onChange: nwCanvas.renderAll.bind(nwCanvas),
-					//from: 0,
-					duration: 4000,
-					easing: fabric.util.ease.easeLinear,
-					onComplete: MoveLeft
-				});			
+			function MoveDown() {
+				gradCircle.animate('top', '+=' + (nwCanvas.height - 20), {
+					//onChange: nwCanvas.renderAll.bind(nwCanvas),
+					//from: 0,
+					duration: 4000,
+					easing: fabric.util.ease.easeLinear,
+					onComplete: MoveLeft
+				});			
 			}
-			
-			function MoveLeft() {
-				gradCircle.animate('left', '-=' + (nwCanvas.width - 20), {
-					//onChange: nwCanvas.renderAll.bind(nwCanvas),
-					//from: 0,
-					duration: 4000,
-					easing: fabric.util.ease.easeLinear,
-					onComplete: MoveUp
-				});			
+			function MoveLeft() {
+				gradCircle.animate('left', '-=' + (nwCanvas.width - 20), {
+					//onChange: nwCanvas.renderAll.bind(nwCanvas),
+					//from: 0,
+					duration: 4000,
+					easing: fabric.util.ease.easeLinear,
+					onComplete: MoveUp
+				});			
 			}
-			
-			function MoveUp() {
-				gradCircle.animate('top', '-=' + (nwCanvas.height - 20), {
+			function MoveUp() {
+				gradCircle.animate('top', '-=' + (nwCanvas.height - 20), {
 					//onChange: nwCanvas.renderAll.bind(nwCanvas),
-					//from: 0,
-					duration: 4000,
-					easing: fabric.util.ease.easeLinear,
-					onComplete: MoveRight
-				});			
-			}
-			MoveRight();
-		}
-		MoveCircle();
-		*/
-		
-/*
-		gradCircle.setGradient('fill', {
-			//type: 'linear',
-			x1: 0,
-			y1: 0,
-			x2: 0,
+					//from: 0,
+					duration: 4000,
+					easing: fabric.util.ease.easeLinear,
+					onComplete: MoveRight
+				});			
+			}
+			MoveRight();
+		}
+		MoveCircle();
+		*/		
+/*
+		gradCircle.setGradient('fill', {
+			//type: 'linear',
+			x1: 0,
+			y1: 0,
+			x2: 0,
 			y2: gradCircle.height,
-			colorStops: {
-				0: '#00ffff',
-				1: '#3e3749'
-			}
+			colorStops: {
+				0: '#00ffff',
+				1: '#3e3749'
+			}
 		});
 */
 		var dist = 0;
@@ -205,7 +200,7 @@ function eventWindowLoaded() {
 	Init();
 	DrawCanvas();
 }
-//Utils
+//Utilsdocument.addEventListener('keydown', function(event) {	switch(event.keyCode) {		case 37:			event.preventDefault();			centerRect.left = centerRect.left - 2;			break;		case 38:			event.preventDefault();			centerRect.top = centerRect.top - 2;			break;					case 39:			event.preventDefault();			centerRect.left = centerRect.left + 2;			break;					case 40:			event.preventDefault();			centerRect.top = centerRect.top + 2;			break;					default:			break;    }}, false);
 function IncludeJavaScript(jsFile) {
   document.write('<script type="text/javascript" src="'
     + jsFile + '"></scr' + 'ipt>'); 
