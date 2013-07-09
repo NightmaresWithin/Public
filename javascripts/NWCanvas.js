@@ -1,65 +1,52 @@
-IncludeJavaScript("js/fabric.js-master/dist/all.js");
-
-IncludeJavaScript("js/Math_Lib.js");
+IncludeJavaScript("javascripts/fabric.js-master/dist/all.js");
+IncludeJavaScript("javascripts/Math_Lib.js");
 var MathUtils = null;
-
 window.addEventListener("load", eventWindowLoaded, false);
-
-var nwCanvas = null;
-var canvasWidth = null;
-var canvasHeight = null;
-var canvasHW = null;
-var canvasHH = null;
+var nwCanvas = null;
+var canvasWidth = null;
+var canvasHeight = null;
+var canvasHW = null;
+var canvasHH = null;
 var centerPoint = {};
-
-var circle2 = null;
+var circle2 = null;
 var c2Deg = null;
-
-var spiral = new Array();
-var sprialCount = 100;
+var spiral = new Array();
+var sprialCount = 100;
 var centerRect = null;
-
-function Init() {
-	nwCanvas = new fabric.Canvas('NWCanvas');
-	canvasWidth = nwCanvas.width;
-	canvasHeight = nwCanvas.height;
-	canvasHW = canvasWidth * .5;
-	canvasHH = canvasHeight * .5;
-	centerPoint.x = canvasHW;
+function Init() {
+	nwCanvas = new fabric.Canvas('NWCanvas');
+	canvasWidth = nwCanvas.width;
+	canvasHeight = nwCanvas.height;
+	canvasHW = canvasWidth * .5;
+	canvasHH = canvasHeight * .5;
+	centerPoint.x = canvasHW;
 	centerPoint.y = canvasHH;
-	
-	MathUtils = MathLib.New();
-	
+	MathUtils = MathLib.New();
 }
-
-function ClearCanvas(inColor) {
-	var rect = new fabric.Rect({
-		left:canvasHW,
-		top:canvasHH,
-		fill: inColor,
-		width: canvasWidth,
-		height: canvasHeight,
-		selectable: false,
+function ClearCanvas(inColor) {
+	var rect = new fabric.Rect({
+		left:canvasHW,
+		top:canvasHH,
+		fill: inColor,
+		width: canvasWidth,
+		height: canvasHeight,
+		selectable: false,
 	});
-	nwCanvas.add(rect);
-	rect.sendToBack();
+	nwCanvas.add(rect);
+	rect.sendToBack();
 }
-
-function DrawCanvas() {
-
-	function DrawObjects() {
-		
-		fabric.Image.fromURL('images/BlueBrain_650x500.png', function(img) {
-			img.left = canvasHW;
-			img.top = canvasHH;
-			img.width = canvasWidth;
-			img.height = canvasHeight;
-			img.selectable = false;
-			nwCanvas.add(img);
-			img.sendToBack();
+function DrawCanvas() {
+	function DrawObjects() {
+		fabric.Image.fromURL('images/BlueBrain_650x500.png', function(img) {
+			img.left = canvasHW;
+			img.top = canvasHH;
+			img.width = canvasWidth;
+			img.height = canvasHeight;
+			img.selectable = false;
+			nwCanvas.add(img);
+			img.sendToBack();
 		});
-		
-		function DrawRects(){
+		function DrawRects(){
 			/*
 			var rect1 = new fabric.Rect({
 				left:canvasWidth * .5,
@@ -86,34 +73,32 @@ function DrawCanvas() {
 			}
 			SpinRect1();
 			*/
-			
-			centerRect = new fabric.Rect({
-				left:canvasWidth * .5,
-				top:canvasHeight * .5,
-				fill: '#00ffff',
-				width: 40,
-				height: 40,
-				strokeWidth: 2,
-				stroke: '#3e3749',
-				//selectable: false,
-			});
-			nwCanvas.add(centerRect);
+			centerRect = new fabric.Rect({
+				left:canvasWidth * .5,
+				top:canvasHeight * .5,
+				fill: '#00ffff',
+				width: 40,
+				height: 40,
+				strokeWidth: 2,
+				stroke: '#3e3749',
+				//selectable: false,
+			});
+			nwCanvas.add(centerRect);
 			//centerRect.bringToFront();
-			
-			function SpinRect2() {
-				//rect1.set('angle', 0);
-				centerRect.animate('angle', '+=.4', {
-					//onChange: nwCanvas.renderAll.bind(nwCanvas),
-					//from: 0,
-					duration: 10,
-					easing: fabric.util.ease.easeLinear,
-					onComplete: SpinRect2
-				});
-			}
-			SpinRect2();
-		}
-		DrawRects();
-		
+			function SpinRect2() {
+				//rect1.set('angle', 0);
+				centerRect.animate('angle', '+=.4', {
+					//onChange: nwCanvas.renderAll.bind(nwCanvas),
+					//from: 0,
+					duration: 10,
+					easing: fabric.util.ease.easeLinear,
+					onComplete: SpinRect2
+				});
+			}
+			SpinRect2();
+		}
+		DrawRects();
+		
 		/*
 		var gradCircle = new fabric.Circle({
 			left: 10, //canvasHW,
@@ -181,54 +166,47 @@ function DrawCanvas() {
 			}
 		});
 */
-		var dist = 0;
+		var dist = 0;
 		var adist = 5;
-		for(var spc=0;spc<sprialCount;spc++){
+		for(var spc=0;spc<sprialCount;spc++){
 			var newLocation = MathUtils.getOrbitalLocationFromObjectDeg(centerPoint, dist, spc * 10);
-			
-			spiral[spc] = new fabric.Circle({
-				left: newLocation.x,
-				top: newLocation.y,
-				fill: '#82e0f0',
-				radius: 5,
-				selectable: false,
-				dist:dist,
-				deg:c2Deg + spc * 10
-			});
-			nwCanvas.add(spiral[spc]);
-			dist = dist + adist;
-		}
+			spiral[spc] = new fabric.Circle({
+				left: newLocation.x,
+				top: newLocation.y,
+				fill: '#82e0f0',
+				radius: 5,
+				selectable: false,
+				dist:dist,
+				deg:c2Deg + spc * 10
+			});
+			nwCanvas.add(spiral[spc]);
+			dist = dist + adist;
+		}
 	}
-	
-	//ClearCanvas('black');
+	//ClearCanvas('black');
 	DrawObjects();
-	
-	function AnimateCanvas(){
-		function AdvanceSpiral(){
+	function AnimateCanvas(){
+		function AdvanceSpiral(){
 			c2Deg = MathUtils.getNextDeg(c2Deg,-2);
-			for(var spc=0;spc<sprialCount;spc++){
-				//spiral[spc].deg = spiral[spc].deg - spc
-				var newLocation = MathUtils.getOrbitalLocationFromObjectDeg(centerRect, spiral[spc].dist, spiral[spc].deg + c2Deg);
-				spiral[spc].left = newLocation.x;
-				spiral[spc].top = newLocation.y;
-			}
-		}
+			for(var spc=0;spc<sprialCount;spc++){
+				//spiral[spc].deg = spiral[spc].deg - spc
+				var newLocation = MathUtils.getOrbitalLocationFromObjectDeg(centerRect, spiral[spc].dist, spiral[spc].deg + c2Deg);
+				spiral[spc].left = newLocation.x;
+				spiral[spc].top = newLocation.y;
+			}
+		}
 		AdvanceSpiral();
-			
-		fabric.util.requestAnimFrame(AnimateCanvas, nwCanvas.getElement());
-		nwCanvas.renderAll();
-	}
-	AnimateCanvas()
+		fabric.util.requestAnimFrame(AnimateCanvas, nwCanvas.getElement());
+		nwCanvas.renderAll();
+	}
+	AnimateCanvas()
 }
-
-function eventWindowLoaded() {
-	Init();
-	DrawCanvas();
-	
+function eventWindowLoaded() {
+	Init();
+	DrawCanvas();
 }
-
-//Utils
-function IncludeJavaScript(jsFile) {
-  document.write('<script type="text/javascript" src="'
-    + jsFile + '"></scr' + 'ipt>'); 
+//Utils
+function IncludeJavaScript(jsFile) {
+  document.write('<script type="text/javascript" src="'
+    + jsFile + '"></scr' + 'ipt>'); 
 }
