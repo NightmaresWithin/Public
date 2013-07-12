@@ -1,4 +1,4 @@
-IncludeJavaScript("javascripts/fabric.js-master/dist/all.js");
+IncludeJavaScript("javascripts/fabric.min.js");
 IncludeJavaScript("javascripts/Math_Lib.js");
 var MathUtils = null;
 window.addEventListener("load", eventWindowLoaded, false);
